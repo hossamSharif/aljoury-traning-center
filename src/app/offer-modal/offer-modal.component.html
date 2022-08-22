@@ -1,0 +1,184 @@
+<ion-item color="fav0" >
+    <ion-button slot="end" fill="clear" (click)="closeMe()"><ion-icon  name="close" color="dark"></ion-icon></ion-button> 
+   </ion-item>
+<ion-content>
+      <ion-segment (ionChange)="segmentChanged($event)" value="genral">
+            <ion-segment-button value="students">
+                  <ion-label>الطلاب</ion-label>
+            </ion-segment-button>
+
+            <ion-segment-button value="details">
+                  <ion-label>محتوي الدورة </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="genral">
+                  <ion-label>تفاصيل عامة </ion-label>
+            </ion-segment-button>
+
+      </ion-segment>
+      <ion-grid [ngSwitch]="sectionSegm" class="ion-margin-top ion-margin-bottom">
+            <ion-row *ngSwitchCase="'genral'">
+                  <ion-col size="12" class="ion-justify-content-end">
+                        <ion-list> 
+                              <ion-row> 
+                                    <ion-col>
+                                          <ion-item>
+                                                <ion-select  placeholder="Select One" [(ngModel)]="offer.sectionId">
+                                                      <ion-select-option *ngFor="let section of sections" value="{{section.id}}" >{{section.title}}</ion-select-option>
+                                                </ion-select>
+                                          </ion-item>
+                                    </ion-col>
+                                    <ion-col class="ion-text-end">
+                                          <ion-label>
+                                                <ion-note>: قسم التدريب </ion-note>
+                                          </ion-label>
+                                    </ion-col>
+                              </ion-row>
+                        
+                        
+                        
+                              <ion-item>
+                                    <ion-label slot="end">
+                                          <ion-note>: إسم الدورة </ion-note>
+                                    </ion-label>
+                                    <ion-input style="direction: rtl" [(ngModel)]="offer.title"></ion-input>
+                              </ion-item>
+                        
+                              <ion-item>
+                                    <ion-label slot="end">
+                                          <ion-note>: الأستاذ </ion-note>
+                                    </ion-label>
+                                    <ion-input style="direction: rtl" [(ngModel)]="offer.teacher"></ion-input>
+                              </ion-item>
+                        
+                        
+                              <ion-item>
+                                    <ion-label slot="end">
+                                          <ion-note>: الوصف المختصر </ion-note>
+                                    </ion-label>
+                                    <ion-textarea [(ngModel)]="offer.shortDescr" style="direction: rtl"></ion-textarea>
+                              </ion-item>
+                              <ion-row>
+                                    <ion-col>
+                                          <ion-item>
+                                                <ion-icon name="calendar" color="fav0"></ion-icon>
+                                                <ion-datetime style="direction: rtl" [(ngModel)]="offer.start" placeholder="Select Date">
+                                                </ion-datetime>
+                        
+                                          </ion-item>
+                                    </ion-col>
+                                    <ion-col class="ion-text-end">
+                                          <ion-label>
+                                                <ion-note>: تاريخ بداية الدورة </ion-note>
+                                          </ion-label>
+                                    </ion-col>
+                              </ion-row>
+                        
+                        
+                              <ion-item>
+                                    <ion-label slot="end">
+                                          <ion-note>: مواعيد المحاضرة </ion-note>
+                                    </ion-label>
+                                    <ion-input style="direction: rtl" [(ngModel)]="offer.dailyTime"></ion-input>
+                              </ion-item>
+                        
+                              <ion-item>
+                                    <ion-item slot="end">
+                                          <ion-label slot="end">
+                                                <ion-note>: ملاحظة </ion-note>
+                                          </ion-label>
+                                          <ion-input style="direction: rtl" [(ngModel)]="offer.price_note"></ion-input>
+                                    </ion-item>
+                                    <ion-item slot="end">
+                                          <ion-label slot="end">
+                                                <ion-note>السعر</ion-note>
+                                          </ion-label>
+                                          <ion-input style="direction: rtl" [(ngModel)]="offer.price"></ion-input>
+                                    </ion-item>
+                        
+                        
+                              </ion-item>
+                        
+                              <ion-item>
+                        
+                                    <ion-item slot="end">
+                                          <ion-label slot="end">
+                                                <ion-note>: عدد الساعات </ion-note>
+                                          </ion-label>
+                                          <ion-input style="direction: rtl" [(ngModel)]="offer.hourCount"></ion-input>
+                                    </ion-item>
+                                    <ion-item slot="end">
+                                          <ion-label slot="end">
+                                                <ion-note>: عدد الأيام </ion-note>
+                                          </ion-label>
+                                          <ion-input style="direction: rtl" ></ion-input>
+                                    </ion-item>
+                        
+                              </ion-item>
+                              <ion-item>
+                        
+                                    <ion-item slot="end">
+                                          <ion-label slot="end">
+                                                <ion-note>: احدث عروض الدورات </ion-note>
+                                          </ion-label>
+                                          <ion-input style="direction: rtl" [(ngModel)]="offer.newLbl"></ion-input>
+                                    </ion-item>
+                                 
+                        
+                              </ion-item>
+                        </ion-list>
+                        <ion-button (click)="addOffer()" expand="full">حفـــظ</ion-button>
+                        <ion-button *ngIf="offerId" (click)="deleteOffer()" expand="full" color="danger">حــــذف</ion-button>
+                  </ion-col>
+            </ion-row>
+            <ion-row *ngSwitchCase="'details'">
+                  <ion-col size="12" class="ion-justify-content-end">
+                        <ion-list>
+                              <ion-item>
+                                    <ion-button fill="clear" (click)="addOfferDetail()">
+                                          <ion-icon name="add" color="fav0"></ion-icon>
+                                    </ion-button>
+                                    <ion-input [(ngModel)]="offerDetail.descrb" style="direction: rtl" placeholder="اكتب المحتوي هنا"></ion-input>
+                                    
+                              </ion-item>
+                              <ion-item *ngFor="let offDet of offerDetails ">
+                                    <label slot="end"> {{ offDet.descrb }} </label>
+                                    <ion-button fill="clear" (click)="deleteOfferDetail(offDet.id)">
+                                                <ion-icon name="trash" color="danger"></ion-icon>
+                                   </ion-button>
+                              </ion-item>
+                        </ion-list>
+                  </ion-col>
+            </ion-row>
+
+            <ion-row *ngSwitchCase="'students'">
+                        <ion-col size="12" class="ion-justify-content-end">
+                                    <ion-list>
+                                          <ion-item>
+                                                <ion-button fill="clear" (click)="addStudent()">
+                                                      <ion-icon name="add" color="fav0"></ion-icon>
+                                                </ion-button>
+                                                <ion-input [(ngModel)]="student.email" style="direction: rtl" placeholder="رقم الموبايل"></ion-input>
+                                                <ion-input [(ngModel)]="student.phone" style="direction: rtl" placeholder="البريد"></ion-input>
+                                                <ion-input [(ngModel)]="student.name" style="direction: rtl" placeholder="الإسم"></ion-input>
+                                                
+                                          </ion-item>
+                                          <ion-item *ngFor="let student of students">
+                                                       
+                                                      <label slot="end"> <ion-icon color="fav1" style="font-size: 20px" name="call"></ion-icon>{{ student.phone }} </label>
+                                                     <label slot="end"> {{ student.name }} </label>
+                                               
+                                                <ion-button fill="clear" (click)="deleteStudent(student.id)">
+                                                            <ion-icon name="trash" color="danger"></ion-icon>
+                                               </ion-button>
+                                          </ion-item>
+                                    </ion-list>
+                              </ion-col>
+            </ion-row>
+      </ion-grid>
+
+
+
+ 
+     
+
+</ion-content>

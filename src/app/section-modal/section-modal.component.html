@@ -1,0 +1,27 @@
+<ion-item color="fav0">
+      <ion-button slot="end" fill="clear" (click)="closeMe()">
+            <ion-icon name="close" color="dark"></ion-icon>
+      </ion-button>
+</ion-item>
+<ion-content>
+      <ion-list> 
+            <ion-item>
+                  <ion-label slot="end">
+                        <ion-note>: الأسم</ion-note> 
+                  </ion-label>
+                  <ion-input style="direction: rtl" [(ngModel)]="section.title">
+
+                  </ion-input>
+            </ion-item>
+            <ion-item>
+                  <ion-label slot="end">
+                        <ion-note>: الوصف المختصر</ion-note>  
+                  </ion-label>
+                  <ion-input style="direction: rtl" [(ngModel)]="section.shortDescr">
+
+                  </ion-input>
+            </ion-item> 
+      </ion-list>
+      <ion-button (click)="addSection()" expand="full">حفـــظ</ion-button>
+      <ion-button *ngIf="section.id" (click)="deleteSection()" expand="full" color="danger">حــــذف</ion-button> 
+</ion-content>

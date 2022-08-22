@@ -1,0 +1,21 @@
+<ion-item color="fav0">
+      <h4 color="light">المدربين</h4>
+      <ion-button slot="end" fill="clear" (click)="closeMe()">
+            <ion-icon name="close" color="dark"></ion-icon>
+      </ion-button>
+</ion-item>
+<ion-content>
+ <ion-list>
+      <ion-item>
+            <ion-label slot="end">   <ion-note>: الإسم </ion-note> </ion-label>
+            <ion-input style="direction: rtl" [(ngModel)]="teacher.name"> </ion-input>
+      </ion-item>
+      <ion-item>
+            <ion-label slot="end">  <ion-note>: الوصف التعريفي </ion-note> </ion-label>
+            <ion-input style="direction: rtl" [(ngModel)]="teacher.shortDescr"> </ion-input>
+      </ion-item> 
+ </ion-list>
+     <ion-button (click)="addTeacher()" expand="full">حفـــظ</ion-button>
+     <ion-button *ngIf="teacher.id"  (click)="deleteTeacher()" expand="full" color="danger">حــــذف</ion-button>
+    
+ </ion-content>

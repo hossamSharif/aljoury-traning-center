@@ -1,0 +1,31 @@
+<ion-item color="fav0">
+  <ion-button slot="end" fill="clear" (click)="closeMe()">
+        <ion-icon name="close" color="dark"></ion-icon>
+  </ion-button>
+</ion-item>
+  <ion-content padding>
+    <div class="box">
+      <!-- <div class="preview">
+        <img [src]="url" alt="">
+      </div> -->
+      <div *ngIf="uploadResponse && uploadResponse.status === 'error'">
+        <ion-item color="danger">خطأ في تحميل الصورة</ion-item>
+
+      </div>
+      <div *ngIf="uploadResponse && uploadResponse.status === 'success'">
+        <img [src]='uploadResponse.url' />
+      </div>
+      <form [formGroup]="form" >  
+        <ion-input type="file" name="avatar" (change)="onFileSelect($event)" ></ion-input>
+        <button (click)="onSubmit()" type="submit">Upload</button> 
+      </form>
+
+      <!-- <div class="uploadbtn"> 
+
+          firebase -->
+        <!-- <label>
+          <input (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*">
+        </label> 
+      </div>  -->
+    </div>
+  </ion-content>

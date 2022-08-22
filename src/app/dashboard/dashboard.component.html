@@ -1,0 +1,111 @@
+<ion-content> 
+<div style="margin-top: 115px"> 
+     
+  <ion-segment (ionChange)="segmentChanged($event)" value="sectionsDe">
+    <ion-segment-button value="genral">
+      <ion-label>اعدادات عامة</ion-label>
+    </ion-segment-button>
+      <ion-segment-button value="teachers">
+        <ion-label>بيانات المدربين </ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="offers">
+        <ion-label>عروض الدورات </ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="sectionsDe">
+          <ion-label>اقسام التدريب </ion-label>
+     </ion-segment-button>
+  </ion-segment>
+
+
+<ion-grid [ngSwitch]="sectionSegm" class="ion-margin-top ion-margin-bottom">
+
+ <ion-row *ngSwitchCase="'genral'">  
+    <ion-col   size="12" size-sm> 
+      </ion-col> 
+ </ion-row>
+
+ <ion-row *ngSwitchCase="'teachers'">
+    <ion-col size="12" class="ion-justify-content-end">
+        <ion-list>
+          <ion-item>
+            <ion-chip (click)="teacherModalN()" fill="clear" slot="end">
+              <ion-icon name="add" color="info"></ion-icon>
+              <ion-text>جديــد</ion-text>
+            </ion-chip>
+          </ion-item>
+          <ion-item *ngFor="let teacher of teachers  ">
+            <label slot="end"> {{ teacher.name }} </label> 
+            <ion-thumbnail slot="end" (click)="imgModalTeacher(teacher.id,teacher.name,teacher.shortDescr,teacher.imgUrl)" >
+              <img src="{{teacher.imgUrl}}">
+            </ion-thumbnail>
+    
+            <ion-button fill="clear" (click)="teacherModal(teacher.id,teacher.name,teacher.shortDescr,teacher.imgUrl)">
+              <ion-icon name="create" color="fav0"></ion-icon>
+            </ion-button>
+    
+          </ion-item>
+        </ion-list>
+      </ion-col>
+ </ion-row>
+      
+<ion-row *ngSwitchCase="'sectionsDe'">
+
+  <ion-col size="12" class="ion-justify-content-end">
+    <ion-list>
+      <ion-item>
+        <ion-chip (click)="sectionModalN()" fill="clear" slot="end">
+          <ion-icon name="add" color="info"></ion-icon>
+          <ion-text>جديــد</ion-text>
+        </ion-chip>
+      </ion-item>
+      <ion-item   *ngFor="let section of sections">
+        <label slot="end"> {{ section.title }} </label> 
+       
+        <ion-thumbnail slot="end" (click)="imgModalSection(section.id ,section.title,section.shortDescr,section.imgUrl)">
+          <img src="{{section.imgUrl}}">
+        </ion-thumbnail> 
+        <ion-button fill="clear" (click)="sectionModal(section.id,section.title,section.shortDescr,section.imgUrl)">
+          <ion-icon name="create" color="fav0"></ion-icon>
+        </ion-button> 
+      </ion-item>
+    </ion-list>
+  </ion-col>
+</ion-row>
+      
+<ion-row *ngSwitchCase="'offers'">
+     <ion-col size="12" class="ion-justify-content-end">
+        <ion-list>
+          <ion-item>
+            <ion-chip (click)="offerModalN()" fill="clear" slot="end">
+              <ion-icon name="add" color="info"></ion-icon>
+              <ion-text>جديــد</ion-text>
+            </ion-chip>
+          </ion-item>
+          <ion-item *ngFor="let offer of offers">
+            <label slot="end"><ion-note color="fav1">{{offer.start |date: 'EEEE, MMMM dd, yyyy'}}<ion-icon name="calendar" color="fav0"></ion-icon></ion-note> {{ offer.title }} </label>
+           
+            <ion-thumbnail slot="end"(click)="imgModalOffer(offer.id,offer.sectionId,offer.title,offer.price,offer.price_note,offer.dailyTime,offer.hourCount,offer.start,offer.shortDescr,offer.teacher,offer.imgUrl)">
+              <img src="{{offer.imgUrl}}">
+            </ion-thumbnail>
+    
+            <ion-button fill="clear" (click)="offerModal(offer.id,offer.sectionId,offer.title,offer.price,offer.price_note,offer.dailyTime,offer.hourCount,offer.start,offer.shortDescr,offer.teacher,offer.imgUrl,offer.newLbl)">
+              <ion-icon name="create" color="fav0"></ion-icon>
+            </ion-button>
+    
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+</ion-row>
+     
+ 
+ 
+ </ion-grid>
+  
+</div>
+
+
+
+
+
+</ion-content>

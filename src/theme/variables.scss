@@ -3,6 +3,22 @@
 
 /** Ionic CSS Variables **/
 :root {
+ /** fav0 **/
+ --ion-color-fav0: #007977;
+ --ion-color-fav0-rgb: 56, 128, 255;
+ --ion-color-fav0-contrast: #ffffff;
+ --ion-color-fav0-contrast-rgb: 255, 255, 255;
+ --ion-color-fav0-shade: #00797e;
+ --ion-color-fav0-tint: #00797f;
+
+ /** fav1 **/
+ --ion-color-fav1: #ed7239;
+ --ion-color-fav1-rgb: 56, 128, 255;
+ --ion-color-fav1-contrast: #ffffff;
+ --ion-color-fav1-contrast-rgb: 255, 255, 255;
+ --ion-color-fav1-shade: #ff7b3e;
+ --ion-color-fav1-tint: #ff7b3f;
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -74,4 +90,28 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+  
+  --ion-font-family: 'droid-kufi';
+}
+.ion-color-fav0 {
+  --ion-color-base: var(--ion-color-fav0);
+  --ion-color-base-rgb: var(--ion-color-fav0-rgb);
+  --ion-color-contrast: var(--ion-color-fav0-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-fav0-contrast-rgb);
+  --ion-color-shade: var(--ion-color-fav0-shade);
+  --ion-color-tint: var(--ion-color-fav0-tint);
+}
+.ion-color-fav1 {
+  --ion-color-base: var(--ion-color-fav1);
+  --ion-color-base-rgb: var(--ion-color-fav1-rgb);
+  --ion-color-contrast: var(--ion-color-fav1-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-fav1-contrast-rgb);
+  --ion-color-shade: var(--ion-color-fav1-shade);
+  --ion-color-tint: var(--ion-color-fav1-tint);
+}
+@font-face {
+  font-family: 'droid-kufi';
+  font-style: italic;
+  font-weight: normal;
+  src: url('../assets/fonts/Droid.Arabic.Kufi.ttf');
 }

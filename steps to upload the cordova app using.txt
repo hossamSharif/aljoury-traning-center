@@ -1,0 +1,42 @@
+steps to upload the cordova app using  .aab Bundle file
+
+ 1-first you must get an key for for your in the root folder of your project
+   
+ keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
+
+ in case you getting error "keytool is not recognize..." you can run a command using terminal instead of powershell
+ or you can add the path of jdk to system path invironment PATH 
+
+ 2-build the bundle file 
+ ionic  cordova build android --prod --release -- -- -- --packageType=bundle 
+
+3- jarsinger command : you maybe face the same error below when you run the command 
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks platforms/android/app/build/outputs/bundle/release/app.aab my-alias
+
+E:\D back\ionic project\project\ionic4\FooDi\platforms\android\app\build\outputs\bundle\release\app.aab
+
+4- open android SDK buildtools folder of  defaultBuildToolsVersion (30.0.0)  to run zipalign command
+you can change the build tools version from build.gradle and you will chooce the buildtools folder 
+according to what version you spicify in build.gardle
+
+ E:/Android/android-sdk/build-tools/29.0.3/zipalign -v 4 platforms/android/app/build/outputs/bundle/release/app.aab ALJOURY.apk
+
+ 5-apksigner command
+
+  E:/Android/android-sdk/build-tools/29.0.3/apksigner.bat verify ALJOURY.apk
+
+ next step is open google developer account and upload you bundle
+  https://play.google.com/console/
+
+  
+ NOTES: visit the links below if you stuck 
+ https://fireship.io/snippets/deploying-ionic4-to-android-and-google-play/
+ https://ionicacademy.com/ionic-android-bundle-build/
+ https://www.youtube.com/watch?v=OnM7f8Tg0nQ
+
+ errorkeytool
+ https://stackoverflow.com/questions/33132310/jarsigner-is-not-recognized-internal-or-external-command
+  https://stackoverflow.com/questions/6211919/errorkeytool-is-not-recognized-as-an-internal-or-external-command-operable-p
+
+ https://www.youtube.com/watch?v=5GHT4QtotE4

@@ -1,0 +1,191 @@
+<ion-content   > 
+
+
+  <div style="margin-top: 115px">
+    <ion-grid no-padding>
+      <!-- small screen -->
+      <ion-row class="ion-text-center ion-hide-md-up" style="position: relative ;margin-top:-45px">
+        <img src="{{sectionFinal[0].imgUrl}}"style="width:100%">
+         
+      </ion-row>
+      <!-- larg screen -->
+      <ion-row class="ion-text-center ion-hide-sm-down" style="position: relative">
+        <img src="{{sectionFinal[0].imgUrl}}" style="height:270px;width:100% ">
+         
+      </ion-row>
+    </ion-grid>
+  </div>
+ 
+  
+
+  <ion-grid  style="background-color:#f4f5f8">
+    <ion-row class="ion-margin-top" dir="rtl">
+      <ion-col size="12">
+        <ion-text color="fav0">
+          <h3  style="font-weight: 700">{{sectionFinal[0].title}}</h3>  
+        </ion-text>
+        <ion-text color="fav1">
+          <h3 style="margin-top: -10px; font-weight: bolder"> ـــــــــــــــــــ </h3>
+        </ion-text>
+
+        <p  >{{sectionFinal[0].shortDescr}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid  style="background-color:#f4f5f8">
+    <form [formGroup]="checkoutDetailsForm" class="checkout-detailsform" >
+    <ion-row class="ion-margin-top ion-margin-bottom"> 
+      <ion-col size="12" size-sm>
+        <ion-col class="ion-text-end">
+          <ion-text color="fav0" style="font-weight: bolder">
+            <h3>سجل الأن</h3>
+          </ion-text>
+          <ion-text color="fav1">
+            <h3 style="margin-top: -10px; font-weight: bolder"> ــــــــــــــ </h3>
+          </ion-text>
+        </ion-col>
+
+
+        <ion-item color="light" class="ion-text-end">
+          <ion-label>إسم المتدرب</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="إسم المتدرب" [(ngModel)]="student.name"  formControlName="name"></ion-input>
+
+        </ion-item>
+        <ion-item color="light" class="ion-text-end">
+          <ion-label>رقم الموبايل</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="رقم الموبايل" [(ngModel)]="student.phone" formControlName="phone"></ion-input>
+        </ion-item>
+
+        <ion-item color="light" class="ion-text-end">
+          <ion-label>البريد الإلكتروني</ion-label>
+        </ion-item>
+        <ion-item class="ion-margin-bottom">
+          <ion-input type="text" placeholder="البريد الإلكتروني" [(ngModel)]="student.email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-row class="ion-justify-content-center ion-margin-top">
+          <ion-button type="submit" (click)="addStudent()"  fill="outline" [disabled] = "checkoutDetailsForm.valid === false" color="fav0">تسجيــــل</ion-button>
+        </ion-row> 
+      </ion-col>
+
+      <ion-col size="12" size-sm  class="ion-justify-content-end">
+        <ion-col class="ion-text-end">
+          <ion-text color="fav0" style="font-weight: bolder">
+            <h3>تفاصيل الكورس</h3>
+          </ion-text>
+          <ion-text color="fav1">
+            <h3 style="margin-top: -10px; font-weight: bolder"> ــــــــــــــ </h3>
+          </ion-text>
+        </ion-col>
+
+        <!-- يجب اضافة حقل كملاحظة مع كل تفصيلة من تفاصيل الدورة ليساعد في التوضيح فمثلا الرسوم يمكن إضافة ملاحظة عليها انها شاملة الشهادة -->
+        <div class="ion-text-end">
+          <h5 color="fav0"> الأستـــاذ <ion-icon color="fav1" name="checkbox-outline"></ion-icon>
+          </h5>
+          <p>{{sectionFinal[0].teacher}} </p>
+          <h5 color="fav0"> الرسوم الدراسية <ion-icon color="fav1" name="checkbox-outline"></ion-icon>
+          </h5>
+          <p> <ion-text>{{sectionFinal[0].price}}</ion-text> {{sectionFinal[0].price_note}}</p>
+          <h5 color="fav0"> تاريخ بداية الدورة<ion-icon color="fav1" name="checkbox-outline"></ion-icon>
+          </h5>
+          <p>{{sectionFinal[0].start |date: 'EEEE, MMMM dd, yyyy'}} </p>
+          <h5 color="fav0"> مواعيد الدورة <ion-icon color="fav1" name="checkbox-outline"></ion-icon>
+          </h5>
+          <p>{{sectionFinal[0].dailyTime}} </p>
+          <h5 color="fav0"> عدد الساعات<ion-icon color="fav1" name="checkbox-outline"></ion-icon>
+          </h5>
+          <p><ion-text>{{sectionFinal[0].hourCount}}</ion-text> {{sectionFinal[0].hournote}} </p>
+          <h5 color="fav0"> محتوي الدورة<ion-icon color="fav1" name="checkbox-outline"></ion-icon>
+          </h5>
+
+
+        </div >
+        <div *ngFor="let offer of sectionFinal[0].offerDetails">
+          <p style="direction: rtl">- {{offer.descrb}} .
+        </p>
+        </div>
+      
+       
+      </ion-col>
+
+
+
+    </ion-row>
+  </form>
+  </ion-grid>
+
+
+  <!-- sub footer -->
+  <ion-grid class="ion-no-margin ion-no-padding ion-margin-top">
+    <form [formGroup]="checkoutDetailsForm2" class="checkout-detailsform" >
+      <ion-row class="ion-text-center" style="background-color:#007977">
+        <ion-col size="12" size-sm>
+            <h5>
+                <ion-text color="light">للإستفسار </ion-text>  
+           </h5>
+            
+          <p>
+            <ion-text color="light">
+              <ion-icon color="fav1" style="font-size: 30px" name="call"></ion-icon>
+              <a href="tel:+249917565129" target="_blank" style="text-decoration-line:none;color: white;">+249917565129‬</a>‎‪
+              <a href="tel:+249155408127" target="_blank" style="text-decoration-line:none;color: white;"> +249155408127 </a>
+                <ion-text><strong>  إتصل بنا </strong></ion-text>
+            </ion-text> 
+          </p>
+            <p>
+              <ion-text >
+                <ion-icon color="fav1" style="font-size: 30px" name="mail"></ion-icon>
+                <a style="color: white;"
+                  href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=aljourycenter@gmail.com">aljourycenter@gmail.com</a>
+                - <a  style="color: white;"
+                  href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=sahar230@hotmail.com">sahar230@hotmail.com</a>
+                  - <a  style="color: white;"
+                  href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=info@aljoury.net">info@aljoury.net</a>
+                </ion-text>
+            </p>    
+        </ion-col>
+        <ion-col size="12" size-sm>
+          <h5>
+            <ion-text color="light">عدد الزوار
+             </ion-text>  
+       </h5>
+       <h5>
+        <ion-text color="light">{{visitor}} 
+         </ion-text>  
+      </h5>
+         </ion-col>
+        <ion-col size="12" size-sm> 
+            <h5>
+                <ion-text color="light">انضم لقائمتنا البريدية ليصلك كل جديد
+                 </ion-text>  
+           </h5>
+           <ion-chip>
+              <ion-input color="light"  [(ngModel)]="emailD"  formControlName="emailD" placeholder="Enter your email"></ion-input>
+                <ion-text color="danger" *ngIf="checkoutDetailsForm2.controls['emailD'].errors && checkoutDetailsForm2.controls['emailD'].dirty">صيغة البريد خاطئة</ion-text> 
+      
+           </ion-chip>
+          
+          <div>
+              <ion-button color="light" fill="outline"  [disabled] = "checkoutDetailsForm2.valid === false || !emailD  " (click)="sendMail()">أرســـل</ion-button> 
+          </div>
+       </ion-col> 
+      </ion-row>
+      </form>
+
+    <!-- developed -by  -->
+    <ion-row class="ion-margin-bottom" style="background-color:black">
+      <ion-col class="ion-text-center">
+        <div color="dark">
+          <ion-text color="light">
+            devoloped by hossam sharif _ hossamsharif1990@gmail.com_ <a href="tel:+249 923 007 930" target="_blank" style="text-decoration-line:none;color: white;">+249923007930</a>
+            </ion-text>
+        </div>
+      </ion-col> 
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

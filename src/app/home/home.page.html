@@ -1,14 +1,368 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+ 
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<!-- main content -->
+<ion-content> 
+  <div style="margin-top: 115px">
+    <!-- test of html5canvas -->
+   <!-- <div id="my-node" style="width: 200px; height:300px; color:red; background-color:blue">
+      <h1>hossssssam</h1>
+      <img src="../../assets/images/ho.png">
+   </div> -->
+  <!-- <ion-button (click)="getSnap()"></ion-button>
+   <ion-button (click)="saveAs()">saveAs</ion-button>   -->
+   <ion-grid no-padding> 
+     <!-- small screen -->
+      <ion-row class="ion-text-center ion-hide-md-up" style="position: relative ;margin-top:-45px">
+          <img src="../../assets/images/mainv4.png" style="width: 100%;">
+          <ion-col style="position: absolute; z-index:1;">
+            <ion-text color="light">
+              <h1 style="font-weight: 700">مركــز الجــوري</h1>
+              <p>للتدريب واللغات</p>
+              
+            </ion-text>
+          </ion-col> 
+        </ion-row> 
+     <!-- larg screen --> 
+    <ion-row class="ion-text-center ion-hide-sm-down" style="position: relative">
+      <img src="../../assets/images/mainv4.png"  style="width: 100%;"> 
+      <ion-col  style="position: absolute; z-index:1;top: 100px;">
+        <ion-text color="light">
+          <h1 style="font-weight: 700">مركــز الجــوري</h1>
+          <p>للتدريب واللغات</p>
+    <!-- <ion-button    (click)="start()" fill="outline" color="danger">studyFireInnerJoin</ion-button> -->
+        </ion-text>
+      </ion-col>
+    </ion-row> 
+  </ion-grid>
+
+<!-- new offer -->
+<div *ngIf="newOffers.length > 0">
+<ion-grid>
+  <ion-col class="ion-text-center">
+    <ion-text color="fav0" style="font-weight: bolder">
+      <h3>احدث العروض والدورات </h3>  
+    </ion-text>
+    <ion-text color="fav1">
+      <h3 style="margin-top: -10px; font-weight: bolder"> ـــــــــــــــ </h3>
+    </ion-text>
+  </ion-col>
+</ion-grid>
+<!-- slider web -->
+<ion-grid style="background-color:#f4f5f8" class="ion-hide-sm-down" > 
+  <ion-row class="ion-margin-top ion-margin-bottom">
+    <ion-slides
+      [options]="{zoom: false,slidesPerView:2.9,spaceBetween:10, centeredSlides: false,speed: 400} ">
+      <ion-slide *ngFor="let offer of newOffers ; let i = index">
+        <ion-card color="light" style="position: relative ;max-width: 240px;min-width: 240px" tappable>
+          <img style="width:100%; height:200px" src="{{offer.imgUrl}}" tappable>
+          <ion-card-header class="titleCard ion-no-padding" color="light" style="position: absolute">
+            <h4>
+              <ion-text color="light">{{offer.title}}</ion-text>
+            </h4>
+          </ion-card-header>
+          <div class="priceCard ion-no-padding" color="light" style="position: absolute ;width: auto;">{{offer.price}}</div>
+          <p class="ion-margin-top">
+            <ion-text color="dark"> {{offer.shortDescr.substring(0,55)}}</ion-text>  <ion-text style="color: darkolivegreen;">...المزيد</ion-text>
+          </p>
+          <div class="ion-margin-top ion-margin-bottom">
+            <ion-button slot="center" color="fav0" (click)="offerDetail(offer.id , offer.sectionId ,offer.title,offer.price,offer.shortDescr,offer.price_note,offer.start,offer.imgUrl,offer.hourCount,offer.dailyTime)">! سجل الأن </ion-button>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+<!-- <ion-row  class="ion-margin-top ion-justify-content-end" >
+  <ion-button *ngIf="sect.offerLength > 0"  (click)="cSect(sect.id,sect.title,sect.shortDescr,sect.imgUrl)" fill="outline" color="fav0">المزيد من العروض</ion-button>
+</ion-row> -->
+<!-- <ion-row *ngIf="sect.offerLength === 0" class="ion-margin-top ion-margin-bottom">
+  <ion-col class="ion-text-center">
+    <h1>
+      <ion-icon color="fav1" style="font-size: 40px;" name="archive"></ion-icon>
+    </h1> 
+    <h3>
+      <ion-text color="fav0">لا توجد عروض حتي الان</ion-text>
+    </h3>
+    <h3>
+      <ion-text color="fav1">.....إنتظرونا</ion-text>
+    </h3>
+  </ion-col>
+</ion-row> --> 
+</ion-grid> 
+
+
+
+  <!-- slider mob -->
+  <ion-grid style="background-color:#f4f5f8" class="ion-hide-sm-up">
+    <ion-row class="ion-margin-top ion-margin-bottom">
+      <ion-slides [options]="mobSlideOpt">
+        <ion-slide *ngFor="let offer of newOffers ;let i = index"> 
+          <ion-card color="light" style="position: relative" tappable> 
+              <img style="width:100%; height:200px" src="{{offer.imgUrl}}" tappable>
+                <ion-card-header class="titleCard ion-no-padding" color="light"  style="position: absolute">
+                  <h4><ion-text color="light">{{offer.title}}</ion-text> </h4>  
+                </ion-card-header>
+              <div class="priceCard ion-no-padding"  color="light" style="position: absolute ;width: auto">
+                {{offer.price}}
+              </div>
+                <p class="ion-margin-top">
+                  <ion-text color="dark"> {{offer.shortDescr.substring(0,55)}}</ion-text>  <ion-text style="color: darkolivegreen;">...المزيد</ion-text>
+ 
+                </p>
+                <div class="ion-margin-top ion-margin-bottom">
+                  <ion-button slot="center" color="fav0" (click)="offerDetail(offer.id , offer.sectionId ,offer.title,offer.price,offer.shortDescr,offer.price_note,offer.start,offer.imgUrl,offer.hourCount,offer.dailyTime)">! سجل الأن </ion-button> 
+                </div>
+          </ion-card> 
+        </ion-slide> 
+      </ion-slides>
+    </ion-row>
+    <!-- <ion-row  class="ion-margin-top ion-justify-content-end" >
+      <ion-button *ngIf="sect.offerLength > 0" (click)="cSect(sect.id,sect.title,sect.shortDescr,sect.imgUrl)" fill="outline" color="fav0">المزيد من العروض</ion-button>
+    </ion-row>
+    <ion-row *ngIf="sect.offerLength === 0" class="ion-margin-top ion-margin-bottom">
+        <ion-col class="ion-text-center">
+          <h1>
+            <ion-icon color="fav1" style="font-size: 40px;" name="archive"></ion-icon>
+          </h1> 
+          <h3>
+            <ion-text color="fav0">لا توجد عروض حتي الان</ion-text>
+          </h3>
+          <h3>
+            <ion-text color="fav1">.....إنتظرونا</ion-text>
+          </h3>
+        </ion-col>
+      </ion-row> -->
+</ion-grid> 
+
+</div>
+
+
+<div *ngFor="let sect of sectionFinal2">
+  <!-- section1 title -->
+  <ion-grid>
+    <ion-col class="ion-text-center">
+      <ion-text color="fav0" style="font-weight: bolder">
+        <h3>{{sect.title}}</h3> 
+
+      </ion-text>
+      <ion-text color="fav1">
+        <h3 style="margin-top: -10px; font-weight: bolder"> ـــــــــــــــ </h3>
+      </ion-text>
+    </ion-col>
+  </ion-grid>
+ 
+ <!-- slider web -->
+  <ion-grid style="background-color:#f4f5f8" class="ion-hide-sm-down" *ngIf="sect.offers.length != 0"> 
+    <ion-row class="ion-margin-top ion-margin-bottom">
+      <ion-slides
+        [options]="{zoom: false,slidesPerView:2.9,spaceBetween:10, centeredSlides: false,speed: 400} ">
+        <ion-slide *ngFor="let offer of sect.offers ; let i = index">
+          <ion-card color="light" style="position: relative ;max-width: 240px;min-width: 240px" tappable>
+            <img style="width:100%; height:200px" src="{{offer.imgUrl}}" tappable>
+            <ion-card-header class="titleCard ion-no-padding" color="light" style="position: absolute">
+              <h4>
+                <ion-text color="light">{{offer.title}}</ion-text>
+              </h4>
+            </ion-card-header>
+            <div class="priceCard ion-no-padding" color="light" style="position: absolute ;width: auto;">{{offer.price}}</div>
+            <p class="ion-margin-top">
+              <ion-text color="dark"> {{offer.shortDescr.substring(0,55)}}</ion-text>  <ion-text style="color: darkolivegreen;">...المزيد</ion-text>
+
+            </p>
+            <div class="ion-margin-top ion-margin-bottom">
+              <ion-button slot="center" color="fav0" (click)="offerDetail(offer.id , offer.sectionId ,offer.title,offer.price,offer.shortDescr,offer.price_note,offer.start,offer.imgUrl,offer.hourCount,offer.dailyTime)">! سجل الأن </ion-button>
+            </div>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  <ion-row  class="ion-margin-top ion-justify-content-end" >
+    <ion-button *ngIf="sect.offerLength > 0"  (click)="cSect(sect.id,sect.title,sect.shortDescr,sect.imgUrl)" fill="outline" color="fav0">المزيد من العروض</ion-button>
+  </ion-row>
+  <ion-row *ngIf="sect.offerLength === 0" class="ion-margin-top ion-margin-bottom">
+    <ion-col class="ion-text-center">
+      <h1>
+        <ion-icon color="fav1" style="font-size: 40px;" name="archive"></ion-icon>
+      </h1> 
+      <h3>
+        <ion-text color="fav0">لا توجد عروض حتي الان</ion-text>
+      </h3>
+      <h3>
+        <ion-text color="fav1">.....إنتظرونا</ion-text>
+      </h3>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>  
+
+<ion-grid *ngIf="sect.offers.length == 0">
+  <ion-row style="background-color: var(--ion-color-light);height: 250px;" class="ion-justify-content-center">
+    <ion-col size="12" class="ion-text-center ion-margin-top ion-padding-top">
+      <ion-icon name="folder-open" color="warning" style="font-size: 6rem;"></ion-icon>
+    </ion-col>
+    <ion-col size="12" class="ion-text-center">
+      <ion-label  color="dark" style="font-size: 18px;"><strong>لا توجد عروض دورات لهذا القسم</strong></ion-label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+  <!-- slider mob -->
+<ion-grid style="background-color:#f4f5f8" class="ion-hide-sm-up">
+    <ion-row class="ion-margin-top ion-margin-bottom">
+      <ion-slides [options]="mobSlideOpt">
+        <ion-slide *ngFor="let offer of sect.offers ;let i = index"> 
+          <ion-card color="light" style="position: relative" tappable> 
+              <img style="width:100%; height:200px" src="{{offer.imgUrl}}" tappable>
+                <ion-card-header class="titleCard ion-no-padding" color="light"  style="position: absolute">
+                  <h4><ion-text color="light">{{offer.title}}</ion-text> </h4>  
+                </ion-card-header>
+              <div class="priceCard ion-no-padding"  color="light" style="position: absolute ;width: auto">
+                {{offer.price}}
+              </div>
+                <p class="ion-margin-top">
+                  <ion-text color="dark"> {{offer.shortDescr.substring(0,55)}}</ion-text>  <ion-text style="color: darkolivegreen;">...المزيد</ion-text>
+
+                </p>
+                <div class="ion-margin-top ion-margin-bottom">
+                  <ion-button slot="center" color="fav0" (click)="offerDetail(offer.id , offer.sectionId ,offer.title,offer.price,offer.shortDescr,offer.price_note,offer.start,offer.imgUrl,offer.hourCount,offer.dailyTime)">! سجل الأن </ion-button> 
+                </div>
+          </ion-card> 
+        </ion-slide> 
+      </ion-slides>
+    </ion-row>
+    <ion-row  class="ion-margin-top ion-justify-content-end" >
+      <ion-button *ngIf="sect.offerLength > 0" (click)="cSect(sect.id,sect.title,sect.shortDescr,sect.imgUrl)" fill="outline" color="fav0">المزيد من العروض</ion-button>
+    </ion-row>
+    <ion-row *ngIf="sect.offerLength === 0" class="ion-margin-top ion-margin-bottom">
+        <ion-col class="ion-text-center">
+          <h1>
+            <ion-icon color="fav1" style="font-size: 40px;" name="archive"></ion-icon>
+          </h1> 
+          <h3>
+            <ion-text color="fav0">لا توجد عروض حتي الان</ion-text>
+          </h3>
+          <h3>
+            <ion-text color="fav1">.....إنتظرونا</ion-text>
+          </h3>
+        </ion-col>
+      </ion-row>
+</ion-grid>  
+
+</div>
+  
+
+ 
+
+
+  
+
+ 
+ 
+<!--  footer -->
+<ion-grid class="ion-no-margin ion-no-padding ion-margin-top">
+  <!-- main footer -->
+  <ion-row class="ion-no-margin ion-text-center" style="background-image:url('../../assets/images/foote2r.png')">
+    <ion-col size="12" size-sm>
+      <h1>
+        <ion-text color="fav0">رؤيتنا</ion-text>
+      </h1>
+      <p>
+        <ion-text color="dark"> 
+            مجال التدريب متخصص من خالل منظومة مؤهله، وهو احد إرتقاء األمم وإكتمال بناء الهيكل
+            العلمى من خالل العلم والعمل مع إنتقال بين المنهج القديم الى المنهج العلمى الحديث الواضح
+            بينهما بوسائل عملية حديثة.
+            أخذنينا هذا المفهوم فى إعبتار التطور مستوى العلمى ألبناء أمنتا فأننا نضع على عاتق مركزنا
+            هذه المسئولية.
+            أهدافنا:
+            نشر العلم بوسط الوسائل الحديثة واقل تكلفة.
+        </ion-text>
+      </p> 
+    </ion-col>
+
+    <ion-col size="12" size-sm>
+        <h1>
+          <ion-text color="fav0">من نحــن</ion-text>
+        </h1>
+        <p>
+          <ion-text color="dark">
+              مركز الجورى للتدريب
+              تم تاسيسه فى عام
+              2017
+              نقدم أحدث وأميز مقومات التدريب و مخارج البحوث العلمية بواقع علمى تدريبى مستعينين
+              بأجهزة أكترونية وتطبيقات حديثة.
+          </ion-text>
+        </p> 
+      </ion-col>
+  </ion-row>
+  <!-- sub footer -->
+  <form [formGroup]="checkoutDetailsForm" class="checkout-detailsform" >
+<ion-row class="ion-text-center" style="background-color:#007977">
+  <ion-col size="12" size-sm>
+      <h5>
+          <ion-text color="light">للإستفسار </ion-text>  
+     </h5>
+      
+    <p>
+      <ion-text color="light">
+        <ion-icon color="fav1" style="font-size: 30px" name="call"></ion-icon>
+        <a href="tel:+249917565129" target="_blank" style="text-decoration-line:none;color: white;">+249917565129‬</a>‎‪
+                  <a href="tel:+249155408127" target="_blank" style="text-decoration-line:none;color: white;"> +249155408127 </a>
+          <ion-text><strong>  إتصل بنا </strong></ion-text>
+      </ion-text> 
+    </p>
+      <p>
+        <ion-text >
+          <ion-icon color="fav1" style="font-size: 30px" name="mail"></ion-icon>
+          <a style="color: white;"
+            href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=aljourycenter@gmail.com">aljourycenter@gmail.com</a>
+          - <a  style="color: white;"
+            href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=sahar230@hotmail.com">sahar230@hotmail.com</a>
+            - <a  style="color: white;"
+            href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=info@aljoury.net">info@aljoury.net</a>
+          </ion-text>
+      </p>    
+  </ion-col>
+  <ion-col size="12" size-sm>
+    <h5>
+      <ion-text color="light">عدد الزوار
+       </ion-text>  
+ </h5>
+ <h5>
+  <ion-text color="light">{{visitor}} 
+   </ion-text>  
+</h5>
+   </ion-col>
+  <ion-col size="12" size-sm> 
+      <h5>
+          <ion-text color="light">انضم لقائمتنا البريدية ليصلك كل جديد
+           </ion-text>  
+     </h5>
+     <ion-chip>
+        <ion-input color="light"  [(ngModel)]="email"  formControlName="email" placeholder="Enter your email"></ion-input>
+					<ion-text color="danger" *ngIf="checkoutDetailsForm.controls['email'].errors && checkoutDetailsForm.controls['email'].dirty">صيغة البريد خاطئة</ion-text> 
+
+     </ion-chip>
+    
+    <div>
+        <ion-button color="light" fill="outline"  [disabled] = "checkoutDetailsForm.valid === false || !email  " (click)="sendMail()">أرســـل</ion-button> 
+    </div>
+ </ion-col> 
+</ion-row>
+</form>
+<!-- design-by  -->
+<ion-row class="ion-margin-bottom" style="background-color:black">
+  <ion-col class="ion-text-center">
+    <div color="dark">
+   <ion-text color="light">
+    devoloped by hossam sharif _ hossamsharif1990@gmail.com_ <a href="tel:+249 923 007 930" target="_blank" style="text-decoration-line:none;color: white;">+249923007930</a>
+    </ion-text>
+   </div>
+  </ion-col>
+
+ </ion-row>
+  </ion-grid>
   </div>
+ 
+
 </ion-content>

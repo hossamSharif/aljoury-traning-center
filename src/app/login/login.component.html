@@ -1,0 +1,37 @@
+ 
+ 
+ <ion-content>
+<ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <ion-list style="margin-top:20%">
+        <ion-item>
+            <ion-label slot="end">
+                  <ion-note>الإسم </ion-note>
+            </ion-label>
+            <ion-input style="direction: rtl" [(ngModel)]="user.name"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label slot="end">
+                <ion-note> كلمة المرور </ion-note>
+          </ion-label>
+          <ion-input style="direction: rtl" [(ngModel)]="user.password"></ion-input>
+     </ion-item>
+     <ion-item>
+        <ion-button (click)="login()" expand="full">دخــــول</ion-button>
+     </ion-item>
+    </ion-list>
+   
+  </ion-row>
+</ion-grid>
+
+<!-- <div *ngFor="let sect of ( sectionD | async)">
+     
+      <h3>{{sect.title}}</h3> 
+
+ <div *ngFor="let offer of sect.offers">
+      <p>{{offer.title}}</p>
+ </div> 
+    
+    </div> -->
+
+ </ion-content>

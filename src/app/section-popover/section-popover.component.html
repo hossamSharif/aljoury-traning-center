@@ -1,0 +1,7 @@
+<ion-list class="ion-text-center">
+  <div *ngFor="let sect of sectionFinal">
+    <ion-item  color="fav0" (click)="cSect(sect.id,sect.title,sect.hortDescr,sect.imgUrl)" tappable> 
+     {{sect.title}} 
+  </ion-item> 
+  </div> 
+</ion-list>

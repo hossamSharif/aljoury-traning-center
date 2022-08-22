@@ -1,5 +1,7 @@
 {
-  "name": "FooDi",
-  "integrations": {},
+  "name": "ALJOURY",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

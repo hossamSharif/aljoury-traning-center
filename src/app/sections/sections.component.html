@@ -1,0 +1,140 @@
+<ion-content >
+
+  <div style="margin-top: 115px" *ngIf="sectionFinal">
+      <ion-grid no-padding> 
+          <!-- small screen -->
+           <ion-row class="ion-text-center ion-hide-md-up" style="position: relative ;margin-top:-45px">
+               <img src="{{sectionFinal[0].imgUrl}}">
+               <!-- <ion-col style="background-color: #80808069;position: absolute; z-index:1;">
+                 <ion-text color="light">
+                   <h1 style="font-weight: 700">{{sectionFinal[0].title}}</h1>
+                   <p>{{sectionFinal[0].shortDescr}}</p>
+                 </ion-text>
+               </ion-col>  -->
+             </ion-row> 
+          <!-- larg screen --> 
+         <ion-row class="ion-text-center ion-hide-sm-down" style="position: relative">
+           <img src="{{sectionFinal[0].imgUrl}}" style="height:270px;width:100% "> 
+           <!-- <ion-col  style="background-color: #80808069;position: absolute; z-index:1;top: 100px;">
+             <ion-text color="light">
+                <h1 style="font-weight: 700">{{sectionFinal[0].title}}</h1>
+                <p>{{sectionFinal[0].shortDescr}}</p>
+             </ion-text>
+           </ion-col> -->
+         </ion-row>
+       </ion-grid>
+  </div>
+
+  <ion-grid  style="background-color:#f4f5f8" *ngIf="sectionFinal">
+    <ion-row class="ion-margin-top" dir="rtl">
+      <ion-col size="12">
+        <ion-text color="fav0" style="text-align: center;">
+          <h3  style="font-weight: 700">{{sectionFinal[0].title}}</h3>  
+        </ion-text>
+        <ion-text color="fav1">
+          <h3 style="margin-top: -10px; font-weight: bolder ;text-align: center;"> ـــــــــــــــــــ </h3>
+        </ion-text>
+        <p  style="text-align: center;">{{sectionFinal[0].shortDescr}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-grid style="background-color:#f4f5f8" *ngIf="sectionFinal">
+    <ion-row class="ion-margin-top ion-margin-bottom ion-justify-content-center"> 
+      <ion-card *ngFor="let offer of sectionFinal[0].offers" color="light" style="position: relative ;width: 300px ;direction: rtl;" tappable >
+        <img style="width: 300px; height:200px" src="{{offer.imgUrl}}" tappable>
+        <ion-card-header class="titleCard ion-no-padding" color="light" style="position: absolute">
+          <h4>
+            <ion-text color="light">{{offer.title}}</ion-text>
+          </h4>
+        </ion-card-header>
+        <div class="priceCard ion-no-padding" color="light" style="position: absolute ;width: auto">
+         {{offer.price}}
+        </div>
+       
+        <p class="ion-margin-top" style="padding:5px;">
+          <ion-text color="dark"> {{offer.shortDescr.substring(0,55)}}</ion-text>  <ion-text style="color: darkolivegreen;">...المزيد</ion-text>
+
+        </p>
+        <div class="ion-margin-top ion-margin-bottom ion-text-center">
+          <ion-button color="fav0" (click)="offerDetail(offer.id , offer.sectionId ,offer.title,offer.price,offer.shortDescr,offer.price_note,offer.start,offer.imgUrl,offer.hourCount,offer.dailyTime)">! سجل الان </ion-button>
+        </div>
+      </ion-card> 
+    </ion-row>
+      <ion-row  class="ion-margin-top ion-justify-content-center" >
+        <!-- <ion-button fill="outline" color="fav0">show more</ion-button> -->
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="ion-no-margin ion-no-padding ion-margin-top"> 
+        <!-- sub footer -->
+        <form [formGroup]="checkoutDetailsForm2" class="checkout-detailsform" >
+          <ion-row class="ion-text-center" style="background-color:#007977">
+            <ion-col size="12" size-sm>
+                <h5>
+                    <ion-text color="light">للإستفسار </ion-text>  
+               </h5>
+                
+              <p>
+                <ion-text color="light">
+                  <ion-icon color="fav1" style="font-size: 30px" name="call"></ion-icon>
+                  <a href="tel:+249917565129" target="_blank" style="text-decoration-line:none;color: white;">+249917565129‬</a>‎‪
+                  <a href="tel:+249155408127" target="_blank" style="text-decoration-line:none;color: white;"> +249155408127 </a>
+                    <ion-text><strong>  إتصل بنا </strong></ion-text>
+                </ion-text> 
+              </p>
+                <p>
+                  <ion-text >
+                    <ion-icon color="fav1" style="font-size: 30px" name="mail"></ion-icon>
+                    <a style="color: white;"
+                      href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=aljourycenter@gmail.com">aljourycenter@gmail.com</a>
+                    - <a  style="color: white;"
+                      href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=sahar230@hotmail.com">sahar230@hotmail.com</a>
+                      - <a  style="color: white;"
+                      href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=info@aljoury.net">info@aljoury.net</a>
+                    </ion-text>
+                </p>    
+            </ion-col>
+            <ion-col size="12" size-sm>
+              <h5>
+                <ion-text color="light">عدد الزوار
+                 </ion-text>  
+           </h5>
+           <h5>
+            <ion-text color="light">{{visitor}} 
+             </ion-text>  
+          </h5>
+             </ion-col>
+            <ion-col size="12" size-sm> 
+                <h5>
+                    <ion-text color="light">انضم لقائمتنا البريدية ليصلك كل جديد
+                     </ion-text>  
+               </h5>
+               <ion-chip>
+                  <ion-input color="light"  [(ngModel)]="emailD"  formControlName="emailD" placeholder="Enter your email"></ion-input>
+                    <ion-text color="danger" *ngIf="checkoutDetailsForm2.controls['emailD'].errors && checkoutDetailsForm2.controls['emailD'].dirty">صيغة البريد خاطئة</ion-text> 
+          
+               </ion-chip>
+              
+              <div>
+                  <ion-button color="light" fill="outline"  [disabled] = "checkoutDetailsForm2.valid === false || !emailD  " (click)="sendMail()">أرســـل</ion-button> 
+              </div>
+           </ion-col> 
+          </ion-row>
+          </form>
+      
+      <!-- design-by  -->
+      <ion-row class="ion-margin-bottom" style="background-color:black">
+        <ion-col class="ion-text-center">
+          <div color="dark">
+            <ion-text color="light">
+              devoloped by hossam sharif _ hossamsharif1990@gmail.com_ <a href="tel:+249 923 007 930" target="_blank" style="text-decoration-line:none;color: white;">+249923007930</a>
+              </ion-text>
+      </div>
+        </ion-col>
+      
+      </ion-row>
+    </ion-grid>
+
+</ion-content>
+ 

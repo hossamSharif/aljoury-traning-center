@@ -1,3 +1,133 @@
+
+  
+
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- headee -->
+  <ion-header> 
+  <ion-toolbar color="light" class="ion-hide-sm-down" style="height: 50px !important">
+      <ion-grid>
+          <ion-row >
+            <ion-col>
+            
+              <span style="font-size:12px">
+               <ion-text> <ion-icon color="fav1" style="font-size: 20px" name="call"></ion-icon></ion-text>
+               <a href="tel:+249 91 756 5129‬" target="_blank" style="text-decoration-line:none">+249 91 756 5129 إتصل بنا‬</a>
+              </span>
+              <span class="ion-margin-start" style="font-size:12px">
+                <ion-icon color="fav1" style="font-size: 20px" name="mail"></ion-icon>
+                <a color="light"
+                      href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=aljourycenter@gmail.com">aljourycenter@gmail.com</a>
+                      -
+                      <a color="light"
+                      href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=info@aljoury.net">info@aljoury.net</a>
+              </span>
+              <span class="ion-margin-start" style="font-size:12px"> 
+                <a href="https://goo.gl/maps/ZUTH7Js5DmYB5pAr5"> <ion-icon color="fav1" style="font-size: 20px" name="pin"> </ion-icon>موقعنـــا</a>
+              </span>
+            </ion-col>
+            <ion-col>
+              <div class="ion-float-right ion-margin-end">
+                  <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"> <ion-icon class="ion-margin-end" color="fav0" style="font-size: 25px" name="logo-twitter" tappable></ion-icon></a>
+                <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL">   <ion-icon class="ion-margin-end" color="fav0" style="font-size: 25px" name="logo-youtube"></ion-icon></a>
+               <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"> <ion-icon class="ion-margin-end" color="fav0" style="font-size: 25px" name="logo-facebook"></ion-icon></a>
+                <a href="https://t.me/joinchat/AAAAAFCS0AHy77ysZAPzqA"><ion-icon class="ion-margin-end" color="fav0" style="font-size: 25px" name="paper-plane"></ion-icon></a>
+                <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"> <ion-icon  class="ion-margin-end" color="fav0" style="font-size: 25px" name="logo-whatsapp"></ion-icon> </a>
+                <!-- <ion-button fill="outline" color="fav0" (click)="login()" style="margin-top: -10px">{{status}}</ion-button> -->
+              
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  </ion-toolbar>
+  <!-- main toolbar -->
+    <ion-toolbar> 
+      <ion-grid>
+        <ion-row no-padding>
+          <ion-col no-padding>
+            <ion-img src="../../assets/images/logom.png" [routerLink]="['/home']" style="width: 145px;height: 50px;"></ion-img>
+          </ion-col>
+          <ion-col class="ion-hide-sm-down" style="font-size: bold">
+            <div class="ion-float-right ion-margin-right">
+              <!-- <ion-chip color="light" class="">
+                <ion-text color="fav0">عن المركز</ion-text>
+              </ion-chip> -->
+              <!-- <ion-chip color="light">
+                <ion-text color="fav0">تدريب اونلاين</ion-text>
+              </ion-chip> -->
+              <ion-chip color="light" (click)="presentSections($event)">
+                <ion-icon color="fav0" name="arrow-dropdown"></ion-icon>
+                <ion-text color="fav0">الأقســـام</ion-text>
+              </ion-chip>
+              <ion-chip color="light" [routerLink]="['/home']">
+                <ion-text color="fav0">الرئيسيــة</ion-text>
+              </ion-chip>
+            </div>
+          </ion-col>
+          <ion-col class="ion-hide-sm-up"> 
+              <ion-menu-button color="fav1" class="ion-float-right"> 
+              </ion-menu-button> 
+          </ion-col>
+        </ion-row> 
+      </ion-grid>
+    </ion-toolbar>
+</ion-header> 
+  <!-- menue  -->
+  <ion-menu side="start" menuId="first">
+    <ion-header>
+      <ion-toolbar color="fav0"> 
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item tappable [routerLink]="['/home']"> 
+            <ion-text slot="end" color="fav0" >الرئيسيــة</ion-text> 
+        </ion-item>
+
+        <ion-item-group>
+          <ion-item-divider color="light"> 
+              <ion-label  slot="end" color="fav0">الأقســـام</ion-label> 
+          </ion-item-divider>
+          <div *ngFor="let sect of sectionFinal"> 
+             <ion-item tappable (click)="cSect(sect.id,sect.title,sect.shortDescr,sect.imgUrl)">
+              <ion-text  slot="end" >{{sect.title}}</ion-text> 
+            </ion-item> 
+          </div> 
+        </ion-item-group>
+
+        <!-- <ion-item><ion-text  slot="end" color="fav0">تدريب اونلاين</ion-text></ion-item>  -->
+        <!-- <ion-item><ion-text  slot="end" color="fav0">عن المركز</ion-text></ion-item>  -->
+      </ion-list>
+      
+      <ion-grid no-padding class="ion-margin-top">
+        <ion-row class="ion-justify-content-center">
+          <ion-button color="fav0" [routerLink]="['/home']">
+            <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"><ion-icon style="font-size: 25px" name="logo-twitter"></ion-icon></a>
+          </ion-button>
+          <ion-button color="fav0">
+              <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"> <ion-icon style="font-size: 25px" name="logo-youtube"></ion-icon></a>
+          </ion-button>
+          <ion-button color="fav0">
+              <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"> <ion-icon style="font-size: 25px" name="logo-facebook"></ion-icon></a>
+          </ion-button>
+          
+        </ion-row> 
+         <ion-row class="ion-margin-top ion-justify-content-center">
+          <ion-button color="fav0">
+            <a href="https://t.me/joinchat/AAAAAFCS0AHy77ysZAPzqA"> <ion-icon style="font-size: 25px" name="paper-plane"></ion-icon></a>
+        </ion-button>  
+        <ion-button color="fav0">
+            <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"> <ion-icon style="font-size: 25px" name="logo-whatsapp"></ion-icon></a>
+        </ion-button>
+        <ion-button color="fav0">
+            <a href="https://goo.gl/maps/ZUTH7Js5DmYB5pAr5"><ion-icon color="fav1" style="font-size: 20px" name="pin"></ion-icon></a>
+
+            <!-- <a href="https://chat.whatsapp.com/KA0Mdrou9uu47n2x0zj3WL"> <ion-icon style="font-size: 25px" name="logo-whatsapp"></ion-icon></a> -->
+        </ion-button>
+         </ion-row>
+      </ion-grid>
+       
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+  
 </ion-app>
